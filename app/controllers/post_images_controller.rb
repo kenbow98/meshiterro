@@ -1,5 +1,6 @@
 class PostImagesController < ApplicationController
   def new
+    #@post_image には form_with に渡すための「空のモデル」を用意したいです。
     @post_image = PostImage.new
   end
 
@@ -23,10 +24,13 @@ class PostImagesController < ApplicationController
   end
 
   def index
+    #@post_imagesにはpost_imagesテーブル内に存在する全てのレコードのインスタンスを代入します。
     @post_images = PostImage.all
   end
 
   def show
+    #@post_imageには特定のidのPostImageモデルを格納させます。
+    @post_image = PostImage.find(params[:id])
   end
 
   #投稿データのストロングパラメータ
