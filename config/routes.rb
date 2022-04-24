@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
 
 
-  resources :post_images, only: [:new, :create, :index, :show]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy]
 
 
   # 名前付きルートとは、文字通りルーティング自体に名前をつけておくこと

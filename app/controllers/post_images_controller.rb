@@ -33,6 +33,12 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.find(params[:id])
   end
 
+  def destroy
+    @post_image = PostImage.find(params[:id])
+    @post_image.destroy
+    redirect_to '/post_images'
+  end
+
   #投稿データのストロングパラメータ
   private
   #post_image_paramsメソッドでは、フォームで入力されたデータが、投稿データとして許可されているパラメータ
