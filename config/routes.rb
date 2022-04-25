@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   #as:オプションを追加することで設定ができる
   #ここでは、「'lists#show'の設定を、listとして利用できる」の意味（asは、英語で「～として」の意味）。
   get 'homes/about' => 'homes#about',as:'about'
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :post_comments, only: [:create]
+  end
 
-  resources :post_images, only: [:new, :create, :index, :show, :destroy]
   resources :users, only: [:show, :edit, :update]
 
   end

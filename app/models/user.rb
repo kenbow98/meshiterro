@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :post_images, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
 #has_one_attached :profile_imageという記述により、profile_imageという名前でActiveStorageで
 #プロフィール画像を保存できるように設定しました。
