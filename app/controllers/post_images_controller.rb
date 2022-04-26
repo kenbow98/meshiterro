@@ -28,12 +28,16 @@ class PostImagesController < ApplicationController
     else
       render :new
     end
-    
+
   end
 
   def index
-    #@post_imagesにはpost_imagesテーブル内に存在する全てのレコードのインスタンスを代入します。
-    @post_images = PostImage.all
+    #1 @post_imagesにはpost_imagesテーブル内に存在する全てのレコードのインスタンスを代入します。
+    #. @post_images = PostImage.all
+    #2 indexアクションの中では、postimagesテーブル内の全データが取得されていました。
+    #  これを、1ページ分の決められた数のデータだけを、新しい順に取得するように変更しています。
+    #  pageメソッドは、kaminariをインストールしたことで使用可能になったメソッドです。
+    @post_images = PostImage.page(params[:page])
   end
 
   def show
