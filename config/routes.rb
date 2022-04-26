@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   #ここでは、「'lists#show'の設定を、listとして利用できる」の意味（asは、英語で「～として」の意味）。
   get 'homes/about' => 'homes#about',as:'about'
   resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    #単数形にすると、/:idがURLに含まれなくなります。
+    resource :favorites, only: [:create, :destroy]
+
     resources :post_comments, only: [:create]
   end
 
   resources :users, only: [:show, :edit, :update]
 
-  end
+end
