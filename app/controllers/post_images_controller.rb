@@ -19,8 +19,16 @@ class PostImagesController < ApplicationController
     #   @post_image(投稿データ)のuser_idを、current_user.id(今ログインしているユーザーの ID)に
     #   指定することで投稿データに、今ログイン中のユーザーの ID を持たせることができる。
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    #  if文を用いて、対象のカラム（ここではimageとshop_name）にデータが保存された場合はsaveメソッド(@post_image.save)がtrueになり、
+    #  今まで通りredirect_toによりリダイレクト処理が走り、
+    #  バリデーションなどにより保存できなかった場合はsaveメソッドがfalseになり、
+    #  renderによりpost_images/new.html.erbが表示され投稿ページを再表示するように設定します。
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
+    
   end
 
   def index
